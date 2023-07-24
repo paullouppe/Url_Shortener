@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&family=Victor+Mono:wght@300&display=swap');
+
+    :root {
+      --main-bg-color: #000000;
+      --box-color: #4E4FEB;
+      --accent-color: #7171ff;
+      --text-color: #EEEEEE;
+    }
+
+    body {
+      font-family: 'Victor Mono', monospace;
+      background-color: var(--main-bg-color);
+    }
+
+    h2,
+    h1 {
+      color: var(--text-color);
+    }
+
+    form {
+      width: 425px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0 auto;
+      background-color: var(--main-bg-color);
+      padding: 25px 0px 15px 0px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    #box {
+      width: 520px;
+      text-align: center;
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: var(--box-color);
+      padding: 10px 5px 35px 5px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    input[type="url"] {
+      width: 348px;
+      padding: 10px;
+      border: 1px solid var(--text-color);
+      background-color: var(--text-color);
+      color: var(--main-bg-color);
+      border-radius: 3px;
+      font-size: 13px;
+      font-family: 'Victor Mono', monospace;
+    }
+
+    form:invalid>input[type="url"] {
+      animation: shake 0.2s ease-in-out 0s 2;
+      border: rgb(230, 82, 82) solid 3px;
+    }
+
+    @keyframes shake {
+      0% {
+        margin-left: 0rem;
+      }
+
+      25% {
+        margin-left: 0.5rem;
+      }
+
+      75% {
+        margin-left: -0.5rem;
+      }
+
+      100% {
+        margin-left: 0rem;
+      }
+    }
+
+    input[type="submit"] {
+      display: block;
+      width: 370px;
+      padding: 10px;
+      margin-top: 10px;
+      background-color: var(--box-color);
+      color: var(--text-color);
+      border: none;
+      border-radius: 3px;
+      font-size: 13px;
+      cursor: pointer;
+      font-family: 'Victor Mono', monospace;
+      transition: 0.5s;
+    }
+
+    input[type="submit"]:hover {
+      background-color: var(--accent-color);
+      transform: scale(1.01);
+    }
+
+    #shortUrl {
+      margin-top: 10px;
+    }
+
+    a {
+      color: var(--text-color);
+      position: relative;
+      text-decoration: none;
+    }
+
+    a::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 1.5px;
+      border-radius: 2px;
+      background-color: var(--text-color);
+      bottom: 0;
+      left: 0;
+      transform-origin: right;
+      transform: scaleX(0);
+      transition: transform .3s ease-in-out;
+    }
+
+    a:hover::before {
+      transform-origin: left;
+      transform: scaleX(1);
+      background-color: var(--accent-color);
+    }
+  </style>
+</head>
+
+<body>
+  <div id="box">
+    <h1>SMALL URL</h1>
+    <h2>Using Mongo DB and Express.js</h2>
+
+
+    <form action="/" method="POST">
+      <input type="url" id="url" name="url" placeholder="Entrez une URL">
+
+      <input type="submit" value="Valider">
+
+      <div onclick="copy()" id="shortUrl">
+        <a href="<%= shortUrl %>">
+          <%= shortUrl %>
+        </a>
+      </div>
+    </form>
+
+
+
+  </div>
+</body>
+
+<script>
+  function copy() {
+    // Get the text field
+    var copyText = document.getElementById("shortUrl");
+
+    // Select the text field
+    copyText.select();
+    copyText.setSelectionRange(0, 99999); // For mobile devices
+
+    // Copy the text inside the text field
+    navigator.clipboard.writeText(copyText.value);
+  }
+</script>
+
+</html>
